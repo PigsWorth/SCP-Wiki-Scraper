@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup
-import lxml
 import requests
 
 # get001() \\ RETURN links list[set(String)], List of URLs found on the SCP-001 webpage.
@@ -88,23 +87,23 @@ class SCPFileScraper:
 
         SCPFileScraper.masterDict[self.articleNum] = self
 
-    # def setText(self): TODO Develop own visualization.
-    #     c = requests.get(str(self.articleURL))
-    #     bs = BeautifulSoup(c.content, 'lxml')
-    #     tmp = bs.get_text()
-    #     tmp = tmp[1200:-2400]
-    #     id = str("Item #: SCP-" + str(intToString(self.articleNum)))
-    #     while tmp[:len(id)] != id:
-    #         tmp = tmp[1:]
-    #     while tmp[-24:] != "Licensed under CC-BY-SA.":
-    #         tmp = tmp[:-1]
+    def setText(self): # TODO Develop web visualization.
+        c = requests.get(str(self.articleURL))
+        bs = BeautifulSoup(c.content, 'lxml')
+        tmp = bs.get_text()
+        tmp = tmp[1200:-2400]
+        id = str("Item #: SCP-" + str(intToString(self.articleNum)))
+        while tmp[:len(id)] != id:
+            tmp = tmp[1:]
+        while tmp[-24:] != "Licensed under CC-BY-SA.":
+            tmp = tmp[:-1]
 
-    #     path = f"TextStorage/{self.articleNum}.txt"
-    #     with open(path, 'w', encoding="utf_8") as txtFile:
-    #         txtFile.write(tmp)
-    #         txtFile.close
+        path = f"TextStorage/{self.articleNum}.txt"
+        with open(path, 'w', encoding="utf_8") as txtFile:
+            txtFile.write(tmp)
+            txtFile.close
         
-    #     return path
+        return path
 
 
     def setOutLinks(self):
