@@ -1,10 +1,6 @@
-from codecs import utf_16_encode
-from encodings import utf_8
-from time import sleep
 from bs4 import BeautifulSoup
 import lxml
 import requests
-import os
 
 # get001() \\ RETURN links list[set(String)], List of URLs found on the SCP-001 webpage.
 #
@@ -17,8 +13,8 @@ def get001():
     parent_url = "https://scp-wiki.wikidot.com"
 
     links = [parent_url + str(linkNUM) for linkNUM, 
-             rawLink in [(a.get('href'), a.get_text()) for a in soup1.select('*[href*="proposal"]')]
-              if "CODE NAME" in rawLink]
+            rawLink in [(a.get('href'), a.get_text()) for a in soup1.select('*[href*="proposal"]')]
+            if "CODE NAME" in rawLink]
     return(links)
 
 # linkFinder(int x) \\ PARAM x int, Article number \\ RETURN String, Article URL
